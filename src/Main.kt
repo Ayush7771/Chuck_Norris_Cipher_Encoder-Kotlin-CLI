@@ -5,6 +5,7 @@ fun main(){
     println("\nThe result:")
     for (i in input) {
         val charToBinary = i.code.toString(2).toInt()
-        println("$i = %07d".format(charToBinary))
+        val binary = "%07d".format(charToBinary)
+        println("$i = $binary")
     }
 }
