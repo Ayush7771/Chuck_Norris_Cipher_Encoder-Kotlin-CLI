@@ -1,12 +1,10 @@
 //package chucknorris
-import java.util.Scanner
-
 fun main(){
-    val scanner = Scanner(System.`in`)
     println("Input string:")
-    val input = scanner.nextLine()
-
-    for (i in input){
-        print("$i ")
+    val input = readln()
+    println("\nThe result:")
+    for (i in input) {
+        val charToBinary = i.code.toString(2).toInt()
+        println("$i = %07d".format(charToBinary))
     }
 }
