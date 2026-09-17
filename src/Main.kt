@@ -1,49 +1,37 @@
-//package chucknorris
+package chucknorris
+
 fun main() {
-    println("Input string:")
-
     val input = readln()
+    val chuckNorris = ChuckNorris(input)
+    chuckNorris.converttoBinary()
+    println(chuckNorris.binary)
+}
 
-    val finalbinary = StringBuilder()
+class ChuckNorris(input: String) {
 
-    for (i in input) {
-        val charToBinary = i.code.toString(2).toInt()
-        val binary = "%07d".format(charToBinary)
-        finalbinary.append(binary)
+    val inputList: List<String> = input.split(" ")
+
+    val binary = StringBuilder()
+
+    fun converttoBinary() {
+        for (i in inputList.indices step 2) {
+            if (inputList[i] == "00") {
+                repeat(inputList[i + 1].length) {
+                    binary.append("0")
+                }
+            }
+
+            if (inputList[i] == "0") {
+                repeat(inputList[i + 1].length) {
+                    binary.append("1")
+                }
+            }
+
+
+        }
     }
 
-    println("\nThe result:")
-
-    val temp = StringBuilder()
     val finalResult = StringBuilder()
 
-    for (index in finalbinary.indices) {
-        if (index == 0) {
-            temp.append(finalbinary[0])
-            continue
-        }
 
-        if (finalbinary[index - 1] == finalbinary[index]) {
-            temp.append(finalbinary[index])
-        } else if (finalbinary[index - 1] != finalbinary[index]){
-            finalResult.append("${if (temp.last() == '0') "00" else "0"} ")
-            repeat(temp.length) {
-                finalResult.append("0")
-            }
-            finalResult.append(" ")
-            temp.clear()
-            temp.append(finalbinary[index])
-        }
-
-        if (index == finalbinary.lastIndex){
-            finalResult.append("${if (temp.last() == '0') "00" else "0"} ")
-            repeat(temp.length) {
-                finalResult.append("0")
-            }
-        }
-
-
-    }
-
-    println(finalResult)
 }
